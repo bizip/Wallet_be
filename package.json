@@ -1,0 +1,25 @@
+{
+  "name": "wallet_be",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+   "dev": "nodemon --exec babel-node src/app.js",
+   "start": "node src/app.js"
+  },
+  "author": "Bizimungu Pascal",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@babel/core": "^7.26.0",
+    "@babel/node": "^7.26.0",
+    "@babel/polyfill": "^7.12.1",
+    "@babel/preset-env": "^7.26.0",
+    "@babel/register": "^7.25.9",
+    "nodemon": "^3.1.9"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2"
+  }
+}
