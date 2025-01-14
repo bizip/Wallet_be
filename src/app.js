@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
+import router from "./restful/routes";
 const { initializeApp, cert } = require("firebase-admin/app");
 
 dotenv.config();
@@ -26,7 +27,7 @@ initializeApp({
     credential: cert(serviceAccount),
     storageBucket: `${process.env.PROJECT_ID}.appspot.com`,
 });
-
+app.use(router);
 const start = () => {
     try {
         app.listen({ port: PORT }, () =>
