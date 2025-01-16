@@ -1,7 +1,6 @@
 import { Router } from "express";
 // import dotenv from "dotenv";
 import authRouter from "./auth";
-console.log(authRouter);
 // dotenv.config();
 
 const API_VERSION = process.env.API_VERSION || "v1";

@@ -1,4 +1,5 @@
 import admin from "firebase-admin";
+import Response from "../../helper/Response/Response";
 export default class AuthController {
     static signUp = async (req, res) => {
         const {
@@ -30,7 +31,7 @@ export default class AuthController {
             const data = { message: 'User created successfully' };
             return Response.success(res, 200, data);
         } catch (error) {
-            console.log(error.message);
+            console.log(error);
             const err = { message: error.message || 'Something went wrong' };
             return Response.error(res, 500, err);
         }
