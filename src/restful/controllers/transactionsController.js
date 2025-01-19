@@ -7,8 +7,7 @@ static async newTransactions(req, res) {
     try {
         const db = admin.firestore();
       const { amount, type, category, subcategory, account, description, date } = req.body;
-      const userId = "skcrmlzxhiOptPFYHzywxXMs10n2";
-      
+      const userId = req.user.uid;
       const transaction = {
         amount: parseFloat(amount),
         type, // 'income' or 'expense'
@@ -45,7 +44,7 @@ static async newTransactions(req, res) {
   static async getAllTransaction(req, res) {
     const db = admin.firestore();
     try {
-      const userId = "skcrmlzxhiOptPFYHzywxXMs10n2";
+      const userId = req.user.uid;
       const { startDate, endDate, category, account } = req.query;
       
       let query = db.collection('transactions')
