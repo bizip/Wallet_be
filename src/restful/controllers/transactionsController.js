@@ -41,9 +41,9 @@ static async newTransactions(req, res) {
     }
   }
 
-  // Get transactions with filtering
-    static async getAllTransaction(req, res) {
-        const db = admin.firestore();
+  // Get transactions with filtering and summary
+  static async getAllTransaction(req, res) {
+    const db = admin.firestore();
     try {
       const userId = "skcrmlzxhiOptPFYHzywxXMs10n2";
       const { startDate, endDate, category, account } = req.query;
@@ -67,14 +67,24 @@ static async newTransactions(req, res) {
       
       const snapshot = await query.get();
       const transactions = [];
+      let summary = { income: 0, expense: 0 };
+
       snapshot.forEach(doc => {
-        transactions.push({ id: doc.id, ...doc.data() });
+        const transaction = doc.data();
+        transactions.push({ id: doc.id, ...transaction });
+        if (transaction.type === 'income') {
+          summary.income += transaction.amount;
+        } else if (transaction.type === 'expense') {
+          summary.expense += transaction.amount;
+        }
       });
       
-      Response.success(res, 200, transactions);
+      Response.success(res, 200, { transactions, summary });
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
-  };
+  }
 
-}
+  // Get transaction summary
+ 
+  }
