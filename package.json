@@ -5,7 +5,7 @@
   "scripts": {
     "build": "babel src -d dist",
     "dev": "nodemon --exec babel-node src/app.js",
-    "start": "node src/app.js"
+    "start": "node dist/app.js"
   },
   "author": "Bizimungu Pascal",
   "license": "ISC",
